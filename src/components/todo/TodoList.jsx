@@ -1,15 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteTodo, editTodo, updateTodo } from '../../redux/state/todo/todoSlice'
+import { TodoDeleteAlert } from './TodoDeleteAlert'
+import { updateTodo } from '../../redux/state/todo/todoSlice'
+import { TodoEditAlert } from './TodoEditAlert'
 const TodoList = () => {
     const todos = useSelector(state => state.todo.todos)
     const dispatch = useDispatch()
-    const handleDeleteTodo = (id) => {
-        dispatch(deleteTodo(id))
-    }
-
-    const handleEditTodo = (todo) => {
-        dispatch(editTodo(todo))
-    }
 
     const onChangeHandler = (todo) => {
         dispatch(updateTodo(todo))
@@ -37,8 +32,8 @@ const TodoList = () => {
                                         <input className='form-check-input' type="checkbox" checked={todo.completed ? 'checked' : ''} onChange={() => { onChangeHandler(todo) }} />
                                     </td>
                                     <td>
-                                        <button className='btn btn-dark' onClick={() => handleEditTodo(todo)}>Edit</button>
-                                        <button className='btn btn-danger ms-2' onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+                                        <button className='btn btn-dark' onClick={() => TodoEditAlert(todo)}>Edit</button>
+                                        <button className='btn btn-danger ms-2' onClick={() => TodoDeleteAlert(index)}>Delete</button>
 
                                     </td>
                                 </tr>

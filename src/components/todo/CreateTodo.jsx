@@ -5,6 +5,7 @@ const CreateTodo = () => {
     const todo = useRef()
     const dispatch = useDispatch()
     const handleAddTodo = () => {
+        if (!todo.current.value) return
         const data = {
             id: Date.now(),
             title: todo.current.value,
@@ -19,7 +20,7 @@ const CreateTodo = () => {
                     <input ref={todo} type="text" className='form-control' placeholder='Enter Todo' />
                 </div>
                 <div className="col-md-2">
-                    <button className='btn btn-success w-100' onClick={() => dispatch(handleAddTodo())}>Add Todo</button>
+                    <button className='btn btn-success w-100' onClick={() => handleAddTodo()}>Add Todo</button>
                 </div>
             </div>
         </div>

@@ -22,12 +22,12 @@ export const todoSlice = createSlice({
         editTodo: (state, action) => {
             state.todos.map((todo) => {
                 if (todo.id === action.payload.id) {
-                    todo.title = "Todo Edited By Redux: " + action.payload.title
+                    todo.title = action.payload['title']
                 }
             })
         },
         deleteTodo: (state, action) => {
-            state.todos = state.todos.filter((todo) => todo.id !== action.payload)
+            state.todos.splice(action.payload, 1)
         },
         updateTodo: (state, action) => {
             state.todos.map((todo) => {
